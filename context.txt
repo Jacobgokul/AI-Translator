@@ -1,0 +1,5 @@
+Build Language detection AI model
+
+- process:
+    step 1:- The text is given and model need to detect whcih Language is this and convert to the lang we ask
+                at frst step will transalte from any lang to eng.

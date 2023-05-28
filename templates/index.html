@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Translator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    
+    .translator-container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .translator-container textarea {
+      width: 100%;
+      height: 120px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    
+    .translator-container .char-count {
+      text-align: center;
+      color: #999;
+      font-size: 12px;
+    }
+    
+    .translator-container button {
+      display: block;
+      width: 120px;
+      margin: 0 auto;
+      padding: 10px;
+      background-color: #e91e63;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    
+    .translator-container button:hover {
+      background-color: #c2185b;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="translator-container">
+    <h1>AI Translator</h1>
+    
+    <form action="/translate" method="POST">
+        <label for="language">Language to translate:</label>
+        <select id="language" name="language">
+            {%  for key, val in languages.items() %}
+                {% if key == language %}
+                    <option value="{{ val }}" selected="{{key}}">{{ key }}</option>
+                {% else %}
+                    <option value="{{ val }}">{{ key }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+        <textarea name="text" maxlength="200" placeholder="Enter your text here..."></textarea>
+        <p class="char-count">0/200</p>
+        <button type="submit">Translate</button>
+    </form>
+    
+    {% if translated_text %}
+        <h4>Translation</h4>
+        <p>{{ translated_text }}</p>
+    {% endif %}
+  </div>
+</body>
+</html>
