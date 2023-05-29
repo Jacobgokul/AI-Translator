@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <title>AI Translator</title>
   <style>
     body {
@@ -76,8 +77,11 @@
         </select>
         <br>
         <br>
-        <textarea name="text" maxlength="200" placeholder="Enter your text here..."></textarea>
-        <p class="char-count">0/200</p>
+        <textarea name="text" id="textarea" maxlength="200" placeholder="Enter your text here..."></textarea>
+        <div>
+          <span id="current">0</span>
+          <span>/ 200</span>
+        </div>
         <button type="submit">Translate</button>
     </form>
     
@@ -86,5 +90,12 @@
         <p>{{ translated_text }}</p>
     {% endif %}
   </div>
+  <script>
+    $('textarea').keyup(function () {
+      var characterCount = $(this).val().length,
+        current = $('#current');
+        current.text(characterCount);
+    });
+  </script>
 </body>
 </html>
